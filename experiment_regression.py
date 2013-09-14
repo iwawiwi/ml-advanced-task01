@@ -5,11 +5,12 @@ import numpy as np
 # x = np.linspace(0.0, 2*np.pi, 100, True)
 x = np.linspace(0.0, 2*np.pi, 100, True)
 print 'type(x): ', type(x)
-y_true = np.sin(x) + np.cos(2*x)
+# y_true = np.sin(x) + np.cos(2*x)
+y_true = np.sin(x) + 2*np.sin(x/2)
 
 # noisy signal
 # try Nsample = 10, 15, 30, 100
-n_sample = 100
+n_sample = 15
 # x_sample = np.linspace(0.0, 2*np.pi, n_sample, True) # correspondent to x
 x_sample = np.linspace(0.0, 2*np.pi, n_sample, True) # correspondent to x
 # noise = np.random.normal(0, 0.15, len(x_sample)) # standard deviation 0.15
@@ -17,11 +18,12 @@ x_sample = np.linspace(0.0, 2*np.pi, n_sample, True) # correspondent to x
 noise = np.random.normal(0, 0.2, len(x_sample)) # standard deviation 0.15
 
 # y_sample = np.sin(x_sample) + noise # blue point
-y_sample = np.sin(x_sample) + np.cos(2*x_sample) + noise
+# y_sample = np.sin(x_sample) + np.cos(2*x_sample) + noise
+y_sample = np.sin(x_sample) + 2*np.sin(x_sample/2) + noise
 
 # Try order = 0, 1, 2, 3, 9, 13
 import regression as reg
-order = 13 # orde approximation
+order = 3 # orde approximation
 w_stand = reg.standReg(x_sample, y_sample, order) # solve regression using LR Normal
 w_dummy = reg.dummyReg(x_sample, y_sample, order)
 w_numpy = reg.numpyReg(x_sample, y_sample, order)

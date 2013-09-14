@@ -142,13 +142,14 @@ def numpySVDReg(x, y, m):
     S = np.zeros(shape=(len(x), m+1)) # create dummy matrix for S
     offsetmin = min(len(x), m+1) # find minimum value between data length and model order
     S[:offsetmin, :offsetmin] = np.diag(s) # fill diagonal with singular value s
-    # solve equation
     # print X
     # print np.dot(U, np.dot(S, V))
     # print U * S * V # Equal to U * D * Vtranspose
-    # print np.allclose(X, np.dot(U, np.dot(S, V)))
+    # print np.allclose(X, np.dot(U, np.dot(S, V))) # Check whether X is close to U*S*V
+
+    # solve equation
     w = V.T * np.mat(S).I * U.T * y
-    print w
+    print 'w_svd: ', w
     return w
 
 def createModel(x, w):
